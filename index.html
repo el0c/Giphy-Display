@@ -12,10 +12,11 @@
   <body>
     <div class="btn-toolbar justify-content-between" role="group" aria-label="Gif Topics">
       <div class="btn-group" role="group" id="searchTopics" aria-label="First group">
+        <!-- Create a placeholder button prior to recieving our .js -->
         <button type="button" class="btn btn-secondary" disabled>Loading...</button>
       </div>
       <div class="input-group">
-          <input type="text" class="form-control" placeholder="Input group example" aria-label="Add a search topic." aria-describedby="form-control">
+          <input type="text" class="form-control" autocomplete= "off" placeholder="Input group example" aria-label="Add a search topic." aria-describedby="form-control">
         <div class="input-group-append">
           <button class="btn btn-success" id="btnTopicSubmit">+</button>
         </div>

@@ -28,7 +28,10 @@ $("#btnTopicSubmit").on("click", function(event) {
     var topic = $(".form-control").val().trim();
 // Push it to the array and disable to button until the next keyup event in the $(document).ready function
     topics.push(topic);
-    $("#btnTopicSubmit").prop("disabled", true); 
+    console.log(this.value + "Value pushed to array. Emptying textbox and disabling button.")
+    $(".form-control").val("");
+    $("#btnTopicSubmit").prop("disabled", true);
+
 
 // Call renderButtons();
     renderButtons();
@@ -40,14 +43,16 @@ $(document).ready (function () {
     $(".form-control").keyup(function () {
         // Check to see if the value of the textbox contains a value already in the array
         if (topics.includes(this.value.trim())) {
-        $("#btnTopicSubmit").prop("disabled", true); 
-        console.log(this.value);   
+            $("#btnTopicSubmit").prop("disabled", true); 
+            console.log(this.value + " already exists. Disabling button.");   
         // Check to see if the textbox contains no text, and disable the button if that's the case.
         } else if (this.value.trim().length === 0 ) {
-        $("#btnTopicSubmit").prop("disabled", true); 
+            console.log(this.value + "Textbox has no value, Disabling button.")
+            $("#btnTopicSubmit").prop("disabled", true); 
         // If none of the conditions are met, enable the button. 
         } else {
-        $("#btnTopicSubmit").prop("disabled", false); 
+            console.log(this.value +" does not exist, enabling button.")
+            $("#btnTopicSubmit").prop("disabled", false); 
         }
     });
 });
