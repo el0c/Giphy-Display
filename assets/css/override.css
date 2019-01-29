@@ -1,0 +1,4 @@
+/* Set first letter of buttons to uppercase */
+.btn-secondary:first-letter {
+    text-transform: uppercase;
+}

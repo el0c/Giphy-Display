@@ -1,5 +1,5 @@
 // Define default topics search topics
-    var topics = ["hackersmovie", "pride", "VR", "norml"];
+    var topics = ["hackersmovie", "pride", "vr", "norml"];
   
     function renderButtons() {
   
@@ -26,8 +26,8 @@ $("#btnTopicSubmit").on("click", function(event) {
     event.preventDefault();
 // Grab input from textbox
     var topic = $(".form-control").val().trim();
-// Push it to the array and disable to button until the next keyup event in the $(document).ready function
-    topics.push(topic);
+// Push it to the array and disable to button until the next keyup event in the $(document).ready function    
+    topics.push(topic.toLowerCase());
     console.log(this.value + "Value pushed to array. Emptying textbox and disabling button.")
     $(".form-control").val("");
     $("#btnTopicSubmit").prop("disabled", true);
@@ -40,9 +40,15 @@ $("#btnTopicSubmit").on("click", function(event) {
 $(document).ready (function () {
     renderButtons();
     $("#btnTopicSubmit").prop("disabled", true);
-    $(".form-control").keyup(function () {
+    // Bugfix for holding the key down and being able to click the button and add a duplicate before the code was executed.
+    $(".form-control").keydown(function() {
+        console.log("Keydown!")
+        $("#btnTopicSubmit").prop("disabled", true); 
+    });
+    $(".form-control").keyup(function() {
+        console.log("Keyup!")
         // Check to see if the value of the textbox contains a value already in the array
-        if (topics.includes(this.value.trim())) {
+        if (topics.includes(this.value.toLowerCase().trim())) {
             $("#btnTopicSubmit").prop("disabled", true); 
             console.log(this.value + " already exists. Disabling button.");   
         // Check to see if the textbox contains no text, and disable the button if that's the case.

@@ -8,20 +8,46 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/override.css">
+    
+    <!-- HTML -->
   </head>
   <body>
-    <div class="btn-toolbar justify-content-between" role="group" aria-label="Gif Topics">
-      <div class="btn-group" role="group" id="searchTopics" aria-label="First group">
-        <!-- Create a placeholder button prior to recieving our .js -->
-        <button type="button" class="btn btn-secondary" disabled>Loading...</button>
-      </div>
-      <div class="input-group">
-          <input type="text" class="form-control" autocomplete= "off" placeholder="Input group example" aria-label="Add a search topic." aria-describedby="form-control">
-        <div class="input-group-append">
-          <button class="btn btn-success" id="btnTopicSubmit">+</button>
-        </div>
-      </div>
-    </div>
+
+    <section class="container-fluid">
+      <section class="row">
+        <aside class="col-2 px-0 mx-0 fixed-top" id="left">
+            <div class="input-group">
+                <input type="text" class="form-control" autocomplete= "off" placeholder="Topic" aria-label="Add a search topic." aria-describedby="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-success" id="btnTopicSubmit">+</button>
+              </div>
+            </div>
+            <div class="btn-toolbar" role="group" aria-label="Gif Topics">
+              <div class="btn-group-vertical mx-auto mt-3" role="group" id="searchTopics" aria-label="First group">
+                  <!-- Create a placeholder button prior to recieving our .js -->
+                  <button type="button" class="btn btn-secondary" disabled>Loading...</button>
+                </div>
+              </div>
+        </aside>
+
+        <main class="col-10 offset-2">
+          <section class="row bg-dark">
+            <div class="col-12 py-4">
+              Giphy Topic Search
+            </div>
+          </section>
+          <section class="row bg-white">
+            <div class="col-12 py-4">
+              Images will appear here.
+              <br>
+              <img src="" alt="Placeholder text for image">
+            </div>
+          </section>
+        </main>
+      </section>
+    </section>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
