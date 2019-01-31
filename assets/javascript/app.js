@@ -1,8 +1,36 @@
+// Add Giphy API and Vars
+let numGIFs = 9;
+const api_url = `https://api.giphy.com/v1/gifs/search?api_key=u4jXl5UG0A6CjuZ37rjIOBxkEVetiof9&limit=${numGIFs}&q=`;
+
 // Define default topics search topics
-    var topics = ["hackersmovie", "pride", "vr", "norml"];
-  
-    function renderButtons() {
-  
+    var topics = ["hackers", "pride", "vr", "norml"];
+
+function getGIFs(query) {
+    $.ajax({
+        "url"   : api_url + query,
+        "method": "GET"
+
+    }).done(response => {
+        // Reset the event handler
+        //$(document).off("click", ".image_container");
+
+        let output = "";
+
+        response.data.forEach(r => {
+            output += `<div class="image_container">
+                           <img src="${r.images.fixed_width_still.url}" height="150">
+                           <span class="rating">Rating: ${r.rating.toUpperCase()}</span>
+                       </div>`;
+        });
+        console.log(query);
+        // Send output to the id=searchResults <seciton>
+        $("#searchResults").html(output);
+
+    });
+}
+
+
+function renderButtons() {  
 // Delete buttons before adding new buttons to prevent duplicates
     $("#searchTopics").empty();
   
@@ -13,7 +41,9 @@
 // Add "type=button"
     a.attr("type", "button");
 // Add "class= btn btn-secondary"
-    a.attr("class", "btn btn-secondary")
+    a.attr("class", "btn btn-secondary topics")
+// Add a specific id for the button based on the topic name
+    // a.attr("id", topics[i]);
 // Set Button Text
     a.text(topics[i]); 
 // Add the bootstrap button to the searchTopics section in the HTML
@@ -21,9 +51,9 @@
     }
 }
 
-$("#btnTopicSubmit").on("click", function(event) {
+$("#btnTopicSubmit").on("click", function(submit) {
 // Prevent form submitting itself
-    event.preventDefault();
+    submit.preventDefault();
 // Grab input from textbox
     var topic = $(".form-control").val().trim();
 // Push it to the array and disable to button until the next keyup event in the $(document).ready function    
@@ -60,5 +90,13 @@ $(document).ready (function () {
             console.log(this.value +" does not exist, enabling button.")
             $("#btnTopicSubmit").prop("disabled", false); 
         }
+    });
+
+    // If a topic button is clicked
+    $(".topics").on("click", function() {
+        // Set Query to the text of the button, lowercased.
+        const query = $(this).text().toLowerCase();
+        // Get GIFs with the query.
+        getGIFs(query);
     });
 });
