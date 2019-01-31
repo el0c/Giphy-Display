@@ -12,7 +12,7 @@ function getGIFs(query) {
 
     }).done(response => {
         // Reset the event handler
-        //$(document).off("click", ".image_container");
+        $(document).off("click", ".image_container");
 
         let output = "";
 
@@ -61,6 +61,7 @@ $("#btnTopicSubmit").on("click", function(submit) {
     console.log(this.value + "Value pushed to array. Emptying textbox and disabling button.")
     $(".form-control").val("");
     $("#btnTopicSubmit").prop("disabled", true);
+    $(".topics").off("click");
 
 
 // Call renderButtons();
@@ -69,7 +70,9 @@ $("#btnTopicSubmit").on("click", function(submit) {
  
 $(document).ready (function () {
     renderButtons();
+
     $("#btnTopicSubmit").prop("disabled", true);
+    
     // Bugfix for holding the key down and being able to click the button and add a duplicate before the code was executed.
     $(".form-control").keydown(function() {
         console.log("Keydown!")
