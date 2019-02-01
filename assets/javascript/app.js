@@ -96,7 +96,7 @@ $(document).ready (function () {
     });
 
     // If a topic button is clicked
-    $(".topics").on("click", function() {
+    $("#searchTopics").on("click", ".topics", function() {
         // Set Query to the text of the button, lowercased.
         const query = $(this).text().toLowerCase();
         // Get GIFs with the query.
